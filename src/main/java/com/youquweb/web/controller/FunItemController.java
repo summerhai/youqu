@@ -44,7 +44,7 @@ public class FunItemController {
     @ResponseBody
     public JSONObject home(){
         System.out.println("获取主页");
-        PageHelper.startPage(2, Constant.PAGE_SHOW_NUM);
+        PageHelper.startPage(1, Constant.PAGE_SHOW_NUM);
         //1.共有多少条数据
         List<FunItem> funItemList = funItemService.getFunItemByHot();
         for(FunItem funItem:funItemList){

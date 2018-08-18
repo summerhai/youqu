@@ -1,12 +1,14 @@
 package com.youquweb.web.pojo;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.util.Date;
 
 public class FunItem {
     private String id;
-
+    @JSONField(format="yyyy-MM-dd HH:mm:ss")
     private Date postTime;
-
+    @JSONField(format="yyyy-MM-dd HH:mm:ss")
     private Date modifyTime;
 
     private String postUser;

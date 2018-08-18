@@ -5,6 +5,6 @@ package com.youquweb.web.utils;
  * 常用常量
  */
 public class Constant {
-    public static final int PAGE_SHOW_NUM = 20;
+    public static final int PAGE_SHOW_NUM = 5;
 
 }

@@ -17,6 +17,7 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
+    <script src="../../dist/js/vue.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -154,468 +155,35 @@
     </header>
     <!-- Full Width Column -->
     <div class="content-wrapper">
-        <div class="container">
+        <div class="container" id="main-content">
             <!-- Main content -->
             <section class="content">
-                <div class="post">
+                <div v-for="item in data" class="post">
                     <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
+                        <img :src="item.postUserAvatar" class="img-circle img-bordered-sm" alt="user image">
                         <span class="username">
-                          <a href="#">张三</a>
+                          <a href="#">{{ item.postUser }}</a>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
                         </span>
-                        <span class="description">2018-08-16 18:01:22</span>
+                        <span class="description">{{ item.postTime }}</span>
                     </div>
                     <!-- /.user-block -->
                     <p>
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
+                        {{ item.content }}
                     </p>
-                    <ul class="list-inline">
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> 喜欢</a>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> 分享</a></li>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i>
-                            评论(100)</a></li>
-                        </li>
-                    </ul>
-                    <!--<input class="form-control input-sm" type="text" placeholder="Type a comment">-->
-                </div>
-                <div class="post">
-                    <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">张三</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                        <span class="description">2018-08-16 18:01:22</span>
+                    <div v-if="item.type === 'img'">
+                        <img :src="item.content" alt="Photo">Yes</img>
                     </div>
-                    <!-- /.user-block -->
-                    <p>
-                        哈哈哈
-                    </p>
-                    <img class="img-responsive" src="../../dist/img/photo1.png" alt="Photo">
                     <ul class="list-inline">
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> 喜欢</a>
+                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> 喜欢{{ item.niceNum }}</a>
                         <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> 分享</a></li>
                         <li><a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i>
-                            评论(100)</a></li>
+                            评论({{ item.commentNum }})</a></li>
                         </li>
                     </ul>
                     <!--<input class="form-control input-sm" type="text" placeholder="Type a comment">-->
                 </div>
-                <div class="post">
-                    <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">张三</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                        <span class="description">2018-08-16 18:01:22</span>
-                    </div>
-                    <!-- /.user-block -->
-                    <p>
-                        哈哈哈
-                    </p>
-                    <img class="img-responsive" src="../../dist/img/logo.png" alt="Photo">
-                    <ul class="list-inline">
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> 喜欢</a>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> 分享</a></li>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i>
-                            评论(100)</a></li>
-                        </li>
-                    </ul>
-                    <!--<input class="form-control input-sm" type="text" placeholder="Type a comment">-->
-                </div>
-                <div class="post">
-                    <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">张三</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                        <span class="description">2018-08-16 18:01:22</span>
-                    </div>
-                    <p>
-                        哈哈哈
-                    </p>
-                    <img class="img-responsive" src="../../dist/img/test.gif" alt="Photo">
-                    <ul class="list-inline">
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> 喜欢</a>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> 分享</a></li>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i>
-                            评论(100)</a></li>
-                        </li>
-                    </ul>
-                    <!--<input class="form-control input-sm" type="text" placeholder="Type a comment">-->
-                </div>
-                <div class="post">
-                    <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">张三</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                        <span class="description">2018-08-16 18:01:22</span>
-                    </div>
-                    <!-- /.user-block -->
-                    <p>
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                    </p>
-                    <ul class="list-inline">
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> 喜欢</a>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> 分享</a></li>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i>
-                            评论(100)</a></li>
-                        </li>
-                    </ul>
-                    <!--<input class="form-control input-sm" type="text" placeholder="Type a comment">-->
-                </div>
-                <div class="post">
-                    <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">张三</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                        <span class="description">2018-08-16 18:01:22</span>
-                    </div>
-                    <!-- /.user-block -->
-                    <p>
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                    </p>
-                    <ul class="list-inline">
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> 喜欢</a>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> 分享</a></li>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i>
-                            评论(100)</a></li>
-                        </li>
-                    </ul>
-                    <!--<input class="form-control input-sm" type="text" placeholder="Type a comment">-->
-                </div>
-                <div class="post">
-                    <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">张三</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                        <span class="description">2018-08-16 18:01:22</span>
-                    </div>
-                    <!-- /.user-block -->
-                    <p>
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                    </p>
-                    <ul class="list-inline">
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> 喜欢</a>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> 分享</a></li>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i>
-                            评论(100)</a></li>
-                        </li>
-                    </ul>
-                    <!--<input class="form-control input-sm" type="text" placeholder="Type a comment">-->
-                </div>
-                <div class="post">
-                    <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">张三</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                        <span class="description">2018-08-16 18:01:22</span>
-                    </div>
-                    <!-- /.user-block -->
-                    <p>
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                    </p>
-                    <ul class="list-inline">
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> 喜欢</a>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> 分享</a></li>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i>
-                            评论(100)</a></li>
-                        </li>
-                    </ul>
-                    <!--<input class="form-control input-sm" type="text" placeholder="Type a comment">-->
-                </div>
-                <div class="post">
-                    <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">张三</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                        <span class="description">2018-08-16 18:01:22</span>
-                    </div>
-                    <!-- /.user-block -->
-                    <p>
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                    </p>
-                    <ul class="list-inline">
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> 喜欢</a>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> 分享</a></li>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i>
-                            评论(100)</a></li>
-                        </li>
-                    </ul>
-                    <!--<input class="form-control input-sm" type="text" placeholder="Type a comment">-->
-                </div>
-                <div class="post">
-                    <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">张三</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                        <span class="description">2018-08-16 18:01:22</span>
-                    </div>
-                    <!-- /.user-block -->
-                    <p>
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                    </p>
-                    <ul class="list-inline">
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> 喜欢</a>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> 分享</a></li>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i>
-                            评论(100)</a></li>
-                        </li>
-                    </ul>
-                    <!--<input class="form-control input-sm" type="text" placeholder="Type a comment">-->
-                </div>
-                <div class="post">
-                    <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">张三</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                        <span class="description">2018-08-16 18:01:22</span>
-                    </div>
-                    <!-- /.user-block -->
-                    <p>
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                    </p>
-                    <ul class="list-inline">
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> 喜欢</a>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> 分享</a></li>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i>
-                            评论(100)</a></li>
-                        </li>
-                    </ul>
-                    <!--<input class="form-control input-sm" type="text" placeholder="Type a comment">-->
-                </div>
-                <div class="post">
-                    <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">张三</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                        <span class="description">2018-08-16 18:01:22</span>
-                    </div>
-                    <!-- /.user-block -->
-                    <p>
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                    </p>
-                    <ul class="list-inline">
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> 喜欢</a>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> 分享</a></li>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i>
-                            评论(100)</a></li>
-                        </li>
-                    </ul>
-                    <!--<input class="form-control input-sm" type="text" placeholder="Type a comment">-->
-                </div>
-                <div class="post">
-                    <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">张三</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                        <span class="description">2018-08-16 18:01:22</span>
-                    </div>
-                    <!-- /.user-block -->
-                    <p>
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                    </p>
-                    <ul class="list-inline">
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> 喜欢</a>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> 分享</a></li>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i>
-                            评论(100)</a></li>
-                        </li>
-                    </ul>
-                    <!--<input class="form-control input-sm" type="text" placeholder="Type a comment">-->
-                </div>
-                <div class="post">
-                    <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">张三</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                        <span class="description">2018-08-16 18:01:22</span>
-                    </div>
-                    <!-- /.user-block -->
-                    <p>
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                    </p>
-                    <ul class="list-inline">
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> 喜欢</a>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> 分享</a></li>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i>
-                            评论(100)</a></li>
-                        </li>
-                    </ul>
-                    <!--<input class="form-control input-sm" type="text" placeholder="Type a comment">-->
-                </div>
-                <div class="post">
-                    <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">张三</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                        <span class="description">2018-08-16 18:01:22</span>
-                    </div>
-                    <!-- /.user-block -->
-                    <p>
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                    </p>
-                    <ul class="list-inline">
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> 喜欢</a>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> 分享</a></li>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i>
-                            评论(100)</a></li>
-                        </li>
-                    </ul>
-                    <!--<input class="form-control input-sm" type="text" placeholder="Type a comment">-->
-                </div>
-                <div class="post">
-                    <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">张三</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                        <span class="description">2018-08-16 18:01:22</span>
-                    </div>
-                    <!-- /.user-block -->
-                    <p>
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                    </p>
-                    <ul class="list-inline">
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> 喜欢</a>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> 分享</a></li>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i>
-                            评论(100)</a></li>
-                        </li>
-                    </ul>
-                    <!--<input class="form-control input-sm" type="text" placeholder="Type a comment">-->
-                </div>
-                <div class="post">
-                    <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">张三</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                        <span class="description">2018-08-16 18:01:22</span>
-                    </div>
-                    <!-- /.user-block -->
-                    <p>
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                    </p>
-                    <ul class="list-inline">
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> 喜欢</a>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> 分享</a></li>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i>
-                            评论(100)</a></li>
-                        </li>
-                    </ul>
-                    <!--<input class="form-control input-sm" type="text" placeholder="Type a comment">-->
-                </div>
-                <div class="post">
-                    <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">张三</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                        <span class="description">2018-08-16 18:01:22</span>
-                    </div>
-                    <!-- /.user-block -->
-                    <p>
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                    </p>
-                    <ul class="list-inline">
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> 喜欢</a>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> 分享</a></li>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i>
-                            评论(100)</a></li>
-                        </li>
-                    </ul>
-                    <!--<input class="form-control input-sm" type="text" placeholder="Type a comment">-->
-                </div>
-                <div class="post">
-                    <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">张三</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                        <span class="description">2018-08-16 18:01:22</span>
-                    </div>
-                    <!-- /.user-block -->
-                    <p>
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                    </p>
-                    <ul class="list-inline">
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> 喜欢</a>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> 分享</a></li>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i>
-                            评论(100)</a></li>
-                        </li>
-                    </ul>
-                    <!--<input class="form-control input-sm" type="text" placeholder="Type a comment">-->
-                </div>
-                <div class="post">
-                    <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">张三</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-                        <span class="description">2018-08-16 18:01:22</span>
-                    </div>
-                    <!-- /.user-block -->
-                    <p>
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                        例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子例子
-                    </p>
-                    <ul class="list-inline">
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> 喜欢</a>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> 分享</a></li>
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i>
-                            评论(100)</a></li>
-                        </li>
-                    </ul>
-                    <!--<input class="form-control input-sm" type="text" placeholder="Type a comment">-->
-                </div>
+
                 <div class="col-sm-7" style="text-align:  center;width:  100%;">
                     <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
                         <ul class="pagination">
@@ -624,18 +192,10 @@
                                                                                                     data-dt-idx="0"
                                                                                                     tabindex="0">首页</a>
                             </li>
-                            <li class="paginate_button active"><a href="#" aria-controls="example2" data-dt-idx="1"
-                                                                  tabindex="0">1</a></li>
-                            <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="2"
-                                                            tabindex="0">2</a></li>
-                            <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="3"
-                                                            tabindex="0">3</a></li>
-                            <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="4"
-                                                            tabindex="0">4</a></li>
-                            <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="5"
-                                                            tabindex="0">5</a></li>
-                            <li class="paginate_button "><a href="#" aria-controls="example2" data-dt-idx="6"
-                                                            tabindex="0">6</a></li>
+                            <li v-for="n in totalPage" class="paginate_button ">
+                                <a href="" aria-controls="example2" :data-dt-idx="n" :tabindex="n">{{ n }}</a>
+                            </li>
+
                             <li class="paginate_button next" id="example2_next"><a href="#" aria-controls="example2"
                                                                                    data-dt-idx="7" tabindex="0">尾页</a>
                             </li>
@@ -669,5 +229,24 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+
+<script>
+    $.ajax({
+        url: '/home',
+        type: 'GET',
+        data: {},
+        success: function (data) {
+            console.log(data);
+            var example2 = new Vue({
+                el: '#main-content',
+                data: data
+            })
+        },
+        error: function (data) {
+            layer.msg("登录超时，请检查网络连接", {icon: 5});
+        }
+    });
+
+</script>
 </body>
 </html>
