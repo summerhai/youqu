@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.youquweb.web.dao.FunItemMapper" >
+  <resultMap id="BaseResultMap" type="com.youquweb.web.pojo.FunItem" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="post_time" property="postTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="post_user" property="postUser" jdbcType="VARCHAR" />
+    <result column="post_user_id" property="postUserId" jdbcType="CHAR" />
+    <result column="post_user_avatar" property="postUserAvatar" jdbcType="VARCHAR" />
+    <result column="tag" property="tag" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="available" property="available" jdbcType="SMALLINT" />
+    <result column="nice_num" property="niceNum" jdbcType="INTEGER" />
+    <result column="comment_num" property="commentNum" jdbcType="INTEGER" />
+    <result column="collect_num" property="collectNum" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, post_time, modify_time, post_user, post_user_id, post_user_avatar, tag, source, 
+    type, content, available, nice_num, comment_num, collect_num
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from funitem
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <select id="selectHotList" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from funitem
+    order by post_time desc
+  </select>
+  <select id="selectByTime" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from funitem
+    order by post_time desc,nice_num desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from funitem
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.youquweb.web.pojo.FunItem" >
+    insert into funitem (id, post_time, modify_time, 
+      post_user, post_user_id, post_user_avatar, 
+      tag, source, type, 
+      content, available, nice_num, 
+      comment_num, collect_num)
+    values (#{id,jdbcType=CHAR}, #{postTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{postUser,jdbcType=VARCHAR}, #{postUserId,jdbcType=CHAR}, #{postUserAvatar,jdbcType=VARCHAR}, 
+      #{tag,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{available,jdbcType=SMALLINT}, #{niceNum,jdbcType=INTEGER}, 
+      #{commentNum,jdbcType=INTEGER}, #{collectNum,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.youquweb.web.pojo.FunItem" >
+    insert into funitem
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="postTime != null" >
+        post_time,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="postUser != null" >
+        post_user,
+      </if>
+      <if test="postUserId != null" >
+        post_user_id,
+      </if>
+      <if test="postUserAvatar != null" >
+        post_user_avatar,
+      </if>
+      <if test="tag != null" >
+        tag,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="available != null" >
+        available,
+      </if>
+      <if test="niceNum != null" >
+        nice_num,
+      </if>
+      <if test="commentNum != null" >
+        comment_num,
+      </if>
+      <if test="collectNum != null" >
+        collect_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="postTime != null" >
+        #{postTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="postUser != null" >
+        #{postUser,jdbcType=VARCHAR},
+      </if>
+      <if test="postUserId != null" >
+        #{postUserId,jdbcType=CHAR},
+      </if>
+      <if test="postUserAvatar != null" >
+        #{postUserAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null" >
+        #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="available != null" >
+        #{available,jdbcType=SMALLINT},
+      </if>
+      <if test="niceNum != null" >
+        #{niceNum,jdbcType=INTEGER},
+      </if>
+      <if test="commentNum != null" >
+        #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="collectNum != null" >
+        #{collectNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youquweb.web.pojo.FunItem" >
+    update funitem
+    <set >
+      <if test="postTime != null" >
+        post_time = #{postTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="postUser != null" >
+        post_user = #{postUser,jdbcType=VARCHAR},
+      </if>
+      <if test="postUserId != null" >
+        post_user_id = #{postUserId,jdbcType=CHAR},
+      </if>
+      <if test="postUserAvatar != null" >
+        post_user_avatar = #{postUserAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null" >
+        tag = #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="available != null" >
+        available = #{available,jdbcType=SMALLINT},
+      </if>
+      <if test="niceNum != null" >
+        nice_num = #{niceNum,jdbcType=INTEGER},
+      </if>
+      <if test="commentNum != null" >
+        comment_num = #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="collectNum != null" >
+        collect_num = #{collectNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youquweb.web.pojo.FunItem" >
+    update funitem
+    set post_time = #{postTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      post_user = #{postUser,jdbcType=VARCHAR},
+      post_user_id = #{postUserId,jdbcType=CHAR},
+      post_user_avatar = #{postUserAvatar,jdbcType=VARCHAR},
+      tag = #{tag,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      available = #{available,jdbcType=SMALLINT},
+      nice_num = #{niceNum,jdbcType=INTEGER},
+      comment_num = #{commentNum,jdbcType=INTEGER},
+      collect_num = #{collectNum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>
