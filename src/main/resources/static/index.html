@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,6 +18,8 @@
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
     <script src="../../dist/js/vue.js"></script>
+    <script src="../../dist/js/vue-pagination-2.min.js"></script>
+    <script src="../../dist/js/axios.min.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -168,14 +170,14 @@
                         <span class="description">{{ item.postTime }}</span>
                     </div>
                     <!-- /.user-block -->
-                    <p>
-                        {{ item.content }}
+                    <!--<p>-->
+                        <!--{{ item.content }}-->
+                    <!--</p>-->
+                    <p v-html="item.content">
+
                     </p>
-                    <div v-if="item.type === 'img'">
-                        <img :src="item.content" alt="Photo">Yes</img>
-                    </div>
                     <ul class="list-inline">
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> 喜欢{{ item.niceNum }}</a>
+                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> {{ item.niceNum }}</a>
                         <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> 分享</a></li>
                         <li><a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i>
                             评论({{ item.commentNum }})</a></li>
@@ -187,18 +189,7 @@
                 <div class="col-sm-7" style="text-align:  center;width:  100%;">
                     <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
                         <ul class="pagination">
-                            <li class="paginate_button previous disabled" id="example2_previous"><a href="#"
-                                                                                                    aria-controls="example2"
-                                                                                                    data-dt-idx="0"
-                                                                                                    tabindex="0">首页</a>
-                            </li>
-                            <li v-for="n in totalPage" class="paginate_button ">
-                                <a href="" aria-controls="example2" :data-dt-idx="n" :tabindex="n">{{ n }}</a>
-                            </li>
-
-                            <li class="paginate_button next" id="example2_next"><a href="#" aria-controls="example2"
-                                                                                   data-dt-idx="7" tabindex="0">尾页</a>
-                            </li>
+                            <pagination :per-page="perPage" :records="totalRecords" @paginate="getPage"></pagination>
                         </ul>
                     </div>
                 </div>
@@ -234,18 +225,34 @@
     $.ajax({
         url: '/home',
         type: 'GET',
-        data: {},
+        // data: {"page":page},
         success: function (data) {
             console.log(data);
             var example2 = new Vue({
                 el: '#main-content',
-                data: data
+                data: data,
+                components: {
+                    Pagination
+                },
+                methods: {
+                    getPage:function (event) {
+                        console.log(event)
+                        axios.get("/home?page="+event).then(
+                            function (res) {
+                                example2.data=res.data.data;
+                                example2.totalRecords=res.data.totalRecords;
+                                example2.perPage=res.data.perPage;
+                            }
+                        )
+                    }
+                }
             })
         },
         error: function (data) {
             layer.msg("登录超时，请检查网络连接", {icon: 5});
         }
     });
+
 
 </script>
 </body>

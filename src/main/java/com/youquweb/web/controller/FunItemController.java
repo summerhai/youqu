@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -42,9 +43,16 @@ public class FunItemController {
 
     @RequestMapping(value={"/home","/index"}, method = RequestMethod.GET)
     @ResponseBody
-    public JSONObject home(){
+    public JSONObject home(HttpServletRequest request){
         System.out.println("获取主页");
-        PageHelper.startPage(1, Constant.PAGE_SHOW_NUM);
+        String pageNum = request.getParameter("page");
+        System.out.println("pageNum:"+pageNum);
+        int page = 1;
+        if(pageNum != null){
+            page = Integer.valueOf(pageNum);
+        }
+        System.out.println("当前页："+page);
+        PageHelper.startPage(page, Constant.PAGE_SHOW_NUM);
         //1.共有多少条数据
         List<FunItem> funItemList = funItemService.getFunItemByHot();
         for(FunItem funItem:funItemList){
@@ -61,7 +69,8 @@ public class FunItemController {
         JSONObject result = new JSONObject();
         result.put("flag",true);
         result.put("data",data);
-        result.put("curPage",1);
+        result.put("curPage",page);
+        result.put("perPage",Constant.PAGE_SHOW_NUM);
         result.put("totalRecords",pageInfo.getTotal());
         result.put("totalPage",getTotalPage(pageInfo.getTotal(),Constant.PAGE_SHOW_NUM));
         return result;
