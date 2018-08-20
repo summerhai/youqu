@@ -8,6 +8,8 @@ import com.github.pagehelper.PageInfo;
 import com.youquweb.web.pojo.FunItem;
 import com.youquweb.web.service.FunItemService;
 import com.youquweb.web.utils.Constant;
+import com.youquweb.web.utils.DateUtils;
+import com.youquweb.web.utils.ExcelUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -81,5 +84,30 @@ public class FunItemController {
             return 1;
         }
         return (int)total/pageShowNum +1;
+    }
+
+    @RequestMapping(value={"/init"}, method = RequestMethod.GET)
+    public String init() throws IOException {
+        System.out.println("init");
+        JSONArray dataArray = ExcelUtils.excelToJSON("C:\\Users\\hanlaiming\\Desktop\\funitem.xlsx");
+        for(int i=0;i<dataArray.size();i++){
+            JSONObject dataObject = dataArray.getJSONObject(i);
+            FunItem funItem = new FunItem();
+            funItem.setId(DateUtils.getId());
+            funItem.setPostTime(dataObject.getDate("PostTime"));
+            funItem.setPostUser(dataObject.getString("PostUser"));
+            funItem.setPostUserId(dataObject.getString("PostUserId"));
+            funItem.setPostUserAvatar(dataObject.getString("PostUserAvatar"));
+            funItem.setTag(dataObject.getString("Tag"));
+            funItem.setType(dataObject.getString("Type"));
+            funItem.setSource(dataObject.getString("Source"));
+            funItem.setContent(dataObject.getString("Content"));
+            funItem.setAvailable((short)1);
+            funItem.setNiceNum(0);
+            funItem.setCollectNum(0);
+            funItem.setCommentNum(0);
+            funItemService.addFunItem(funItem);
+        }
+        return null;
     }
 }

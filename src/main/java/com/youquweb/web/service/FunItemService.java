@@ -18,4 +18,5 @@ public interface FunItemService {
     List<FunItem> getFunItemByTime();
 
 
+    void addFunItem(FunItem funItem);
 }

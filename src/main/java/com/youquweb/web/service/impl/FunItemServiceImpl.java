@@ -31,4 +31,9 @@ public class FunItemServiceImpl implements FunItemService {
     public List<FunItem> getFunItemByTime() {
         return funItemMapper.selectByTime();
     }
+
+    @Override
+    public void addFunItem(FunItem funItem) {
+        funItemMapper.insert(funItem);
+    }
 }
