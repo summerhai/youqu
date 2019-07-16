@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.youquweb.web.dao.FunItemMapper" >
   <resultMap id="BaseResultMap" type="com.youquweb.web.pojo.FunItem" >
-    <id column="id" property="id" jdbcType="CHAR" />
+    <id column="id" property="id" jdbcType="INTEGER" />
     <result column="post_time" property="postTime" jdbcType="TIMESTAMP" />
     <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
     <result column="post_user" property="postUser" jdbcType="VARCHAR" />
@@ -21,12 +21,7 @@
     id, post_time, modify_time, post_user, post_user_id, post_user_avatar, tag, source, 
     type, content, available, nice_num, comment_num, collect_num
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from funitem
-    where id = #{id,jdbcType=CHAR}
-  </select>
+
   <select id="selectHotList" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select
     <include refid="Base_Column_List" />
@@ -39,9 +34,15 @@
     from funitem
     order by post_time desc,nice_num desc
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from funitem
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from funitem
-    where id = #{id,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.youquweb.web.pojo.FunItem" >
     insert into funitem (id, post_time, modify_time, 
@@ -49,7 +50,7 @@
       tag, source, type, 
       content, available, nice_num, 
       comment_num, collect_num)
-    values (#{id,jdbcType=CHAR}, #{postTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
+    values (#{id,jdbcType=INTEGER}, #{postTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
       #{postUser,jdbcType=VARCHAR}, #{postUserId,jdbcType=CHAR}, #{postUserAvatar,jdbcType=VARCHAR}, 
       #{tag,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
       #{content,jdbcType=VARCHAR}, #{available,jdbcType=SMALLINT}, #{niceNum,jdbcType=INTEGER}, 
@@ -103,7 +104,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        #{id,jdbcType=CHAR},
+        #{id,jdbcType=INTEGER},
       </if>
       <if test="postTime != null" >
         #{postTime,jdbcType=TIMESTAMP},
@@ -189,7 +190,7 @@
         collect_num = #{collectNum,jdbcType=INTEGER},
       </if>
     </set>
-    where id = #{id,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.youquweb.web.pojo.FunItem" >
     update funitem
@@ -206,6 +207,6 @@
       nice_num = #{niceNum,jdbcType=INTEGER},
       comment_num = #{commentNum,jdbcType=INTEGER},
       collect_num = #{collectNum,jdbcType=INTEGER}
-    where id = #{id,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

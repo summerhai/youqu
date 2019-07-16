@@ -5,7 +5,7 @@
 
 <generatorConfiguration>
     <classPathEntry
-            location="C:\Users\hanlaiming\.m2\repository\mysql\mysql-connector-java\5.1.39\mysql-connector-java-5.1.39.jar"/>
+            location="C:\Users\Administrator\.m2\repository\mysql\mysql-connector-java\5.1.39\mysql-connector-java-5.1.39.jar"/>
     <context id="my" targetRuntime="MyBatis3">
         <commentGenerator>
             <property name="suppressDate" value="true"/>
@@ -13,30 +13,37 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://10.10.18.142:3306/youqu?useUnicode=true&amp;characterEncoding=utf-8"
+                        connectionURL="jdbc:mysql://localhost:3306/youqu?useUnicode=true&amp;characterEncoding=utf-8"
                         userId="root"
-                        password="super321"/>
+                        password="112358"/>
 
         <javaModelGenerator targetPackage="com.youquweb.web.pojo"
-                            targetProject="G:\MyProject\youqu\src\main\java">
+                            targetProject="E:\Project\youqu\src\main\java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
         <sqlMapGenerator targetPackage="mapping"
-                         targetProject="G:\MyProject\youqu\src\main\resources\mybatis">
+                         targetProject="E:\Project\youqu\src\main\resources\mybatis">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <javaClientGenerator targetPackage="com.youquweb.web.dao"
-                             targetProject="G:\MyProject\youqu\src\main\java" type="XMLMAPPER">
+                             targetProject="E:\Project\youqu\src\main\java" type="XMLMAPPER">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
-        <table tableName="funitem" domainObjectName="FunItem"
+        <table tableName="user" domainObjectName="User"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
-            <columnOverride column="content" jdbcType="VARCHAR" />
+            <!--<columnOverride column="content" jdbcType="VARCHAR" />-->
+            <!--<columnOverride column="m_evaluate_list" jdbcType="VARCHAR" />-->
+        </table>
+        <table tableName="nice" domainObjectName="Nice"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <!--<columnOverride column="content" jdbcType="VARCHAR" />-->
             <!--<columnOverride column="m_evaluate_list" jdbcType="VARCHAR" />-->
         </table>
         <!--<table tableName="key_event_warning" domainObjectName="Key"-->

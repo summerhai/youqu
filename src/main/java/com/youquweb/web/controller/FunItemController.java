@@ -89,11 +89,10 @@ public class FunItemController {
     @RequestMapping(value={"/init"}, method = RequestMethod.GET)
     public String init() throws IOException {
         System.out.println("init");
-        JSONArray dataArray = ExcelUtils.excelToJSON("C:\\Users\\hanlaiming\\Desktop\\funitem.xlsx");
+        JSONArray dataArray = ExcelUtils.excelToJSON("E:\\Project\\youqu\\src\\main\\resources\\funitem.xlsx");
         for(int i=0;i<dataArray.size();i++){
             JSONObject dataObject = dataArray.getJSONObject(i);
             FunItem funItem = new FunItem();
-            funItem.setId(DateUtils.getId());
             funItem.setPostTime(dataObject.getDate("PostTime"));
             funItem.setPostUser(dataObject.getString("PostUser"));
             funItem.setPostUserId(dataObject.getString("PostUserId"));

@@ -5,13 +5,13 @@ import com.youquweb.web.pojo.FunItem;
 import java.util.List;
 
 public interface FunItemMapper {
-    int deleteByPrimaryKey(String id);
+    int deleteByPrimaryKey(Integer id);
 
     int insert(FunItem record);
 
     int insertSelective(FunItem record);
 
-    FunItem selectByPrimaryKey(String id);
+    FunItem selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(FunItem record);
 

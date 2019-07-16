@@ -39,7 +39,7 @@
     <header class="main-header">
         <nav class="navbar navbar-static-top">
             <div class="container">
-                <div class="navbar-header">
+                <div class="navbar-header" style="padding-left: 25%">
                     <a href="/index.html" class="navbar-brand" style="font-size: 30px"><b>有趣</b></a>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                             data-target="#navbar-collapse">
@@ -159,7 +159,7 @@
     <div class="content-wrapper">
         <div class="container" id="main-content">
             <!-- Main content -->
-            <section class="content">
+            <section class="content" style="width: 61%;">
                 <div v-for="item in data" class="post">
                     <div class="user-block">
                         <img :src="item.postUserAvatar" class="img-circle img-bordered-sm" alt="user image">
@@ -173,12 +173,14 @@
                     <!--<p>-->
                         <!--{{ item.content }}-->
                     <!--</p>-->
-                    <p v-html="item.content">
+                    <p style="font-size: 18px" v-html="item.content">
 
                     </p>
                     <ul class="list-inline">
-                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> {{ item.niceNum }}</a>
+                        <!--点赞-->
+                        <li><a href="#"  class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> {{ item.niceNum }}</a>
                         <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> 分享</a></li>
+                        <!--评论-->
                         <li><a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i>
                             评论({{ item.commentNum }})</a></li>
                         </li>
@@ -245,6 +247,11 @@
                             }
                         )
                     }
+                    // addNice:function (event) {
+                    //     console.log(event);
+                    //     // url, data, callback, type
+                    //     axios.post("/")
+                    // }
                 }
             })
         },

@@ -1,14 +1,12 @@
 package com.youquweb.web.pojo;
 
-import com.alibaba.fastjson.annotation.JSONField;
-
 import java.util.Date;
 
 public class FunItem {
-    private String id;
-    @JSONField(format="yyyy-MM-dd HH:mm:ss")
+    private Integer id;
+
     private Date postTime;
-    @JSONField(format="yyyy-MM-dd HH:mm:ss")
+
     private Date modifyTime;
 
     private String postUser;
@@ -33,12 +31,12 @@ public class FunItem {
 
     private Integer collectNum;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Date getPostTime() {
