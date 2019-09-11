@@ -25,6 +25,8 @@ import java.util.List;
  * @author hanlaiming
  * 主页处理逻辑
  * @date 2018-08-16
+ * need rethink and rewrite
+ * @date 2019-09-09
  */
 @Controller
 public class FunItemController {
